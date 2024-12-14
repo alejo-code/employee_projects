@@ -8,6 +8,19 @@
         <field name="view_mode">tree,form</field>
     </record>
 
+    <menuitem id="employee_project_menu_root"
+        name="Employee Project"
+        parent="hr.menu_hr_root"
+        sequence="5" />
+
+    <menuitem id="employee_project_menu"
+        name="Projects"
+        action="employee_project_action"
+        parent="employee_project_menu_root"
+        sequence="10" />
+
+
+
     <record id="view_employee_project_tree"
         model="ir.ui.view">
         <field name="model">employee.project</field>

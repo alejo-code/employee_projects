@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 # Copyright 2024 Alejandro Olano <Github@alejo-code>
 
-from odoo import models, fields, api
+from odoo import models, fields
 
 
 class EmployeeProject(models.Model):

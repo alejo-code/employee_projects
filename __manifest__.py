@@ -14,10 +14,11 @@
     "category": "Human Resources",
     "website": "https://www.linkedin.com/in/alejocode/",
     "license": "LGPL-3",
-    "depends": ["hr"],
+    "depends": ["base", "hr"],
     "data": [
         "security/res_groups.xml",
         "security/ir.model.access.csv",
         "views/employee_project_view.xml",
+        "views/hr_employee_view.xml",
     ],
 }
