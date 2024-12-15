@@ -7,6 +7,7 @@ import json
 
 
 class Main(http.Controller):
+
     @http.route("/employee_projects/custom", type="http", auth="public", website=True)
     def employee_projects_custom(self, **kw):
         return request.render(
@@ -82,5 +83,62 @@ class Main(http.Controller):
             "employee_projects.portal_create_project",
             {
                 "error": "Por favor, complete todos los campos.",
+            },
+        )
+
+    @http.route("/my/employee", type="json", auth="user")
+    def get_employee_data(self):
+        user = request.env.user
+        employee = request.env["hr.employee"].search(
+            [("user_id", "=", user.id)], limit=1
+        )
+        if employee:
+            return {
+                "id": employee.id,
+                "name": employee.name,
+                "job_title": employee.job_title,
+                "department": employee.department_id.name,
+                "work_email": employee.work_email,
+                "work_phone": employee.work_phone,
+            }
+        return {}
+
+    @http.route(["/my/employee_projects"], type="http", auth="user", website=True)
+    def portal_employee_projects(self, **kwargs):
+
+        employee = (
+            request.env["hr.employee"]
+            .sudo()
+            .search([("user_id", "=", request.env.user.id)], limit=1)
+        )
+        projects = (
+            request.env["employee.project"]
+            .sudo()
+            .search([("employee_id", "=", employee.id)])
+        )
+
+        return request.render(
+            "employee_projects.portal_my_projects",
+            {
+                "projects": projects,
+                "employee": employee,
+            },
+        )
+
+    @http.route(
+        ["/my/employee_projects/<int:project_id>"],
+        type="http",
+        auth="user",
+        website=True,
+    )
+    def portal_employee_project_detail(self, project_id, **kwargs):
+        project = request.env["employee.project"].sudo().browse(project_id)
+        if not project or project.employee_id.user_id.id != request.env.user.id:
+            return request.render("http_routing.http_404")
+
+        return request.render(
+            "employee_projects.portal_employee_project_detail",
+            {
+                "project": project,
             },
         )

@@ -21,8 +21,6 @@
         "views/employee_project_view.xml",
         "views/hr_employee_view.xml",
         "views/templates.xml",
-        "views/project_portal_templates.xml",
-        "views/portal_employee_project_menu.xml",
     ],
     "assets": {
         "web.assets_frontend": [
