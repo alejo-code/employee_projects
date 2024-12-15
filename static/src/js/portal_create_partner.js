@@ -8,29 +8,29 @@ odoo.define('employee_projects.portal_create_partner', function (require) {
     function createPartner(event) {
         event.preventDefault();
 
-        // Obtener valores del formulario
+        
         const partnerName = $('#partner_name').val().trim();
         const partnerEmail = $('#partner_email').val().trim();
 
-        // Validar que los campos no estén vacíos
+       
         if (!partnerName || !partnerEmail) {
             alert(_t('Por favor, complete todos los campos.'));
             return;
         }
 
-        // Realizar la llamada JSON-RPC para crear el nuevo socio
+        
         ajax.jsonRpc('/web/dataset/call_kw', 'call', {
-            model: 'res.partner',  // Modelo a afectar
-            method: 'create',      // Método a llamar
+            model: 'res.partner',  
+            method: 'create',      
             args: [{
                 'name': partnerName,
                 'email': partnerEmail,
-            }], // Lista de argumentos posicionales
-            kwargs: {},            // Diccionario adicional (puede estar vacío)
+            }], 
+            kwargs: {},            
         })
         .then(function (result) {
             alert(_t('Nuevo socio creado con éxito.'));
-            window.location.href = '/portal/my/profile'; // Redirigir tras éxito
+            window.location.href = '/portal/my/profile'; // 
         })
         .catch(function (error) {
             console.error('Error:', error);
@@ -38,11 +38,11 @@ odoo.define('employee_projects.portal_create_partner', function (require) {
         });
     }
 
-    // Asociar evento al formulario cuando el DOM esté listo
+    
     $(document).ready(function () {
         const form = $('#create_partner_form');
         if (form.length) {
-            form.on('submit', createPartner); // Asignar función al evento submit
+            form.on('submit', createPartner); 
         } else {
             console.warn('Formulario no encontrado: #create_partner_form');
         }

@@ -47,3 +47,40 @@ class Main(http.Controller):
                 "error": "Por favor, complete todos los campos.",
             },
         )
+
+    @http.route("/portal/create_project", type="http", auth="public", website=True)
+    def create_project(self, **kwargs):
+        # Recibir los datos del formulario
+        name = kwargs.get("name")
+        description = kwargs.get("description")
+        start_date = kwargs.get("start_date")
+        end_date = kwargs.get("end_date")
+        employee = (
+            request.env["hr.employee"]
+            .sudo()
+            .search([("user_id", "=", request.env.user.id)], limit=1)
+        )
+
+        if name and description:
+            # Crear el nuevo socio (res.partner)
+            partner = (
+                request.env["employee.project"]
+                .sudo()
+                .create(
+                    {
+                        "name": name,
+                        "description": description,
+                        "employee_id": employee.id,
+                        "start_date": start_date,
+                        "end_date": end_date,
+                    }
+                )
+            )
+            # Redirigir al usuario a la vista del nuevo socio (o a otra página de confirmación)
+            return request.redirect("/portal/my/profile")
+        return request.render(
+            "employee_projects.portal_create_project",
+            {
+                "error": "Por favor, complete todos los campos.",
+            },
+        )

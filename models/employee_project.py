@@ -6,6 +6,7 @@ from odoo import models, fields
 
 class EmployeeProject(models.Model):
     _name = "employee.project"
+    _inherit = ["mail.thread", "mail.activity.mixin"]
     _description = "Employee Project"
 
     name = fields.Char(string="Project Name", required=True)
