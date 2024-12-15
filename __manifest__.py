@@ -14,11 +14,19 @@
     "category": "Human Resources",
     "website": "https://www.linkedin.com/in/alejocode/",
     "license": "LGPL-3",
-    "depends": ["base", "hr"],
+    "depends": ["base", "hr", "portal", "website"],
     "data": [
         "security/res_groups.xml",
         "security/ir.model.access.csv",
         "views/employee_project_view.xml",
         "views/hr_employee_view.xml",
+        "views/templates.xml",
+        "views/project_portal_templates.xml",
+        "views/portal_employee_project_menu.xml",
     ],
+    "assets": {
+        "web.assets_frontend": [
+            "employee_projects/static/src/**/*",
+        ],
+    },
 }
