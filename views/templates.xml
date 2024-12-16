@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="portal_partner_form"
+        name="Portal Partner Form">
+        <t t-call="portal.portal_layout">
+            <div class="container">
+                <h1>Create a New Partner</h1>
+                <form id="create_partner_form">
+                    <div class="form-group">
+                        <label for="partner_name">Name</label>
+                        <input type="text"
+                            id="partner_name"
+                            name="name"
+                            class="form-control"
+                            required="True" />
+                    </div>
+                    <div class="form-group">
+                        <label for="partner_email">Email</label>
+                        <input type="email"
+                            id="partner_email"
+                            name="email"
+                            class="form-control"
+                            required="True" />
+                    </div>
+                    <button type="submit"
+                        class="btn btn-primary">Create Partner</button>
+                </form>
+            </div>
+        </t>
+    </template>
+
+    <template id="portal_create_project"
+        name="Portal Project Form">
+        <t t-call="portal.portal_layout">
+            <div class="container mt-5">
+                <h1 class="mb-4">Create a New Project</h1>
+                <form id="create_project_form"
+                    class="bg-light p-4 rounded shadow-sm">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text"
+                            id="name"
+                            name="name"
+                            class="form-control"
+                            placeholder="Enter the name"
+                            required="True" />
+                    </div>
+                    <div class="form-group">
+                        <label for="description">Description</label>
+                        <input type="text"
+                            id="description"
+                            name="description"
+                            class="form-control"
+                            placeholder="Enter the description"
+                            required="True" />
+                    </div>
+                    <div class="form-group">
+                        <label for="start_date">Start Date</label>
+                        <input type="date"
+                            id="start_date"
+                            name="start_date"
+                            class="form-control"
+                            required="True" />
+                    </div>
+                    <div class="form-group">
+                        <label for="end_date">End Date</label>
+                        <input type="date"
+                            id="end_date"
+                            name="end_date"
+                            class="form-control"
+                            required="True" />
+                    </div>
+                    <div class="form-group mt-4">
+                        <button type="submit"
+                            class="btn btn-primary btn-lg btn-block">Create Project</button>
+                    </div>
+                </form>
+            </div>
+        </t>
+    </template>
+
+    <template id="portal_my_projects"
+        name="My Projects">
+        <t t-call="portal.portal_layout">
+            <div class="container">
+                <h1>My Projects</h1>
+                <t t-if="projects">
+                    <ul>
+                        <t t-foreach="projects"
+                            t-as="project">
+                            <a t-att-href="'/my/employee_projects/%s' % project.id"
+                                class="btn btn-primary">
+                    View Details
+                            </a>
+                            <li>
+                                <a t-att-href="'/my/employee_projects/%s' % project.id">
+                                    <t t-esc="project.name" />
+                                </a>
+                            </li>
+                        </t>
+                    </ul>
+                </t>
+                <t t-else="">
+                    <p>No projects assigned.</p>
+                </t>
+                <a href="/portal/create_project"
+                    class="btn btn-primary">Create New Project</a>
+            </div>
+        </t>
+    </template>
+
+
+    <template id="portal_employee_project_detail"
+        name="Employee Project Detail">
+        <t t-call="portal.portal_layout">
+            <div class="container mt-5">
+                <h1 class="mb-4">Project Details</h1>
+                <div class="card shadow-lg">
+                    <div class="card-body">
+                        <h5 class="card-title text-primary">
+                            <t t-esc="project.name" />
+                        </h5>
+                        <p class="card-text mb-3">
+                            <t t-esc="project.description" />
+                        </p>
+
+                        <div class="mb-3">
+                            <p>
+                                <strong>Employee:</strong>
+                                <t t-esc="project.employee_id.name" />
+                            </p>
+                            <p>
+                                <strong>Start Date:</strong>
+                                <t t-esc="project.start_date or 'N/A'" />
+                            </p>
+                            <p>
+                                <strong>End Date:</strong>
+                                <t t-esc="project.end_date or 'N/A'" />
+                            </p>
+                        </div>
+                        <a href="/my/home"
+                            class="btn btn-success mt-4">
+                            <i class="fas fa-arrow-left"></i> Back to My Projects
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </t>
+    </template>
+
+
+    <template id="portal_my_home_extension"
+        inherit_id="portal.portal_my_home">
+        <xpath expr="//div[@class='o_portal_docs list-group']"
+            position="inside">
+            <div class="container mt-5">
+                <h1 class="mb-4">My Projects</h1>
+                <t t-if="projects">
+                    <div class="row">
+                        <t t-foreach="projects"
+                            t-as="project">
+                            <div class="col-md-4 mb-4">
+                                <div class="card shadow-sm">
+                                    <div class="card-body">
+                                        <h5 class="card-title">
+                                            <a t-att-href="'/my/employee_projects/%s' % project.id"
+                                                class="text-decoration-none">
+                                                <t t-esc="project.name" />
+                                            </a>
+                                        </h5>
+                                        <a t-att-href="'/my/employee_projects/%s' % project.id"
+                                            class="btn btn-primary btn-sm">View Details</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </t>
+                    </div>
+                </t>
+                <t t-else="">
+                    <p>No projects assigned.</p>
+                </t>
+                <a href="/portal/create_project"
+                    class="btn btn-success mt-4">Create New Project</a>
+            </div>
+        </xpath>
+    </template>
+
+
+    <template id="website_my_home_extension"
+        inherit_id="website.homepage">
+        <xpath expr="//div[@id='wrap']"
+            position="inside">
+            <div class="container mt-5">
+                <h1 class="mb-4">My Projects</h1>
+                <t t-if="projects">
+                    <div class="row">
+                        <t t-foreach="projects"
+                            t-as="project">
+                            <div class="col-md-4 mb-4">
+                                <div class="card shadow-sm">
+                                    <div class="card-body">
+                                        <h5 class="card-title">
+                                            <a t-att-href="'/my/employee_projects/%s' % project.id"
+                                                class="text-decoration-none">
+                                                <t t-esc="project.name" />
+                                            </a>
+                                        </h5>
+                                        <a t-att-href="'/my/employee_projects/%s' % project.id"
+                                            class="btn btn-primary btn-sm">View Details</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </t>
+                    </div>
+                </t>
+                <t t-else="">
+                    <p>No projects assigned.</p>
+                </t>
+                <a href="/portal/create_project"
+                    class="btn btn-success mt-4">Create New Project</a>
+            </div>
+        </xpath>
+    </template>
+</odoo>
