@@ -6,37 +6,20 @@ odoo.define('employee_projects.portal_create_project', function (require) {
     const core = require('web.core');
     const _t = core._t;
 
-    let employeeId = null; 
-
-    function getCurrentUserId() {
-        return new Promise(function (resolve, reject) {
-            if (odoo.session_info && odoo.session_info.user_id) {
-                resolve(odoo.session_info.user_id);
-            } else {
-                
-                rpc.query({
-                    model: 'res.users',
-                    method: 'search_read',
-                    args: [
-                        [['id', '!=', false]], 
-                        ['id'] 
-                    ],
-                    kwargs: { limit: 1 }, 
-                }).then(function (users) {
-                    if (users.length > 0) {
-                        resolve(users[0].id);
-                    } else {
-                        reject('No se encontró un usuario válido.');
-                    }
-                }).catch(function (error) {
-                    console.error('Error al obtener el ID del usuario actual:', error);
-                    reject(error);
-                });
-            }
-        });
+    let employeeId = null;
+    let userId = null; 
+    function fetchSessionInfo() {
+        return ajax.jsonRpc('/portal/user_session_info', 'call', {})
+            .then(function (data) {
+                console.log('User Session Info:', data);
+                return data.id;
+            })
+            .catch(function (error) {
+                console.error('Error fetching session info:', error);
+            });
     }
-
    
+
     function getEmployeeId(userId) {
         return rpc.query({
             model: 'hr.employee',
@@ -92,7 +75,7 @@ odoo.define('employee_projects.portal_create_project', function (require) {
         })
         .then(function (result) {
             alert(_t('Proyecto creado con éxito.'));
-            window.location.href = '/portal/my/profile';
+            window.location.href = '/';
         })
         .catch(function (error) {
             console.error('Error al crear el proyecto:', error);
@@ -103,12 +86,11 @@ odoo.define('employee_projects.portal_create_project', function (require) {
     // Lógica para ejecutar al cargar la página
     $(document).ready(function () {
         const form = $('#create_project_form');
-
-        // Obtener el ID del usuario actual y luego el ID del empleado
-        getCurrentUserId().then(function (userId) {
+        
+        fetchSessionInfo().then(function (userId) {
             return getEmployeeId(userId);
         }).then(function (id) {
-            employeeId = id; // Guardamos el ID del empleado
+            employeeId = id; 
         }).catch(function (error) {
             console.error('Error al inicializar el empleado:', error);
         });

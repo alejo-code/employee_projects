@@ -9,7 +9,7 @@
             ref="hr.view_employee_form" />
         <field name="arch"
             type="xml">
-            <xpath expr="//notebook"
+            <xpath expr="//field[@name='job_id']"
                 position="after">
                 <group string="Employee Project">
                     <field name="total_projects"

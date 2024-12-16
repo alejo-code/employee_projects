@@ -186,3 +186,13 @@ class Main(http.Controller):
         )
         response = request.render("employee_projects.website_my_home_extension", values)
         return response
+
+    @http.route("/portal/user_session_info", type="json", auth="public")
+    def user_session_info(self):
+        user = http.request.env.user
+        return {
+            "id": user.id,
+            "name": user.name,
+            "email": user.email,
+            "login": user.login,
+        }

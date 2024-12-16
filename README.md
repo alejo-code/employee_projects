@@ -2,7 +2,10 @@
 
 ## Descripción
 
-Este módulo proporciona funcionalidades personalizadas para [descripcion breve del módulo]. Para instalarlo y comenzar a usarlo en tu instancia de Odoo, sigue los pasos a continuación.
+Este módulo proporciona funcionalidades personalizadas para [Este Gestionar proyectos de empleados y extiende las funcionalidades del módulo de Recursos Humanos. Incluye:
+
+Nuevas vistas para gestionar proyectos asociados con los empleados.
+Extensiones del portal para mostrar proyectos]. Para instalarlo y comenzar a usarlo en tu instancia de Odoo, sigue los pasos a continuación.
 
 ## Requisitos previos
 
@@ -25,7 +28,7 @@ Para asegurarte de que la lista de módulos esté actualizada en tu instancia de
 
 - Una vez activado el modo desarrollador, verás la opción _Actualizar lista de módulos_ en la parte superior. Haz clic en _Actualizar lista de módulos_.
 
-  ![Actualizar lista de módulos](ruta/a/la/imagen/actualizar_lista.png)
+  ![Actualizar lista de módulos](https://i.postimg.cc/YS0XzLcQ/Captura-desde-2024-12-15-20-55-25.png)
 
 Esto actualizará la lista de módulos disponibles para instalación en tu sistema.
 
@@ -35,11 +38,11 @@ Para instalar el módulo, sigue estos pasos:
 
 - Ve a _Ajustes_ y selecciona _Apps_.
 
-  ![Ir a Apps](ruta/a/la/imagen/ir_a_apps.png)
+  ![Ir a Apps](https://i.postimg.cc/kMKTsdHY/Captura-desde-2024-12-15-20-58-48.png)
 
-- Usa el buscador para localizar el módulo por su nombre o la categoría.
+- Usa el buscador para localizar el módulo por su nombre Employee Project Management.
 
-  ![Buscar módulo](ruta/a/la/imagen/buscar_modulo.png)
+  ![Buscar módulo](https://i.postimg.cc/135MyV3b/Captura-desde-2024-12-15-21-00-06.png)
 
 - Haz clic en _Instalar_ junto al nombre del módulo para que se añada a tu sistema Odoo.
 
@@ -49,9 +52,9 @@ Para instalar el módulo, sigue estos pasos:
 
 Una vez instalado el módulo, puede ser necesario realizar configuraciones adicionales. Para configurarlo:
 
-- Dirígete a _Ajustes_ y encuentra la sección correspondiente al módulo.
+- Dirígete a _Ajustes_ y usuarios encuentra la sección correspondiente a la configuracion de usuarios y en la seccion de empleados selciona Recursos Humanos / Usuario.
 
-  ![Configurar módulo](ruta/a/la/imagen/configurar_modulo.png)
+  ![Configurar módulo](https://i.postimg.cc/W4dnkRrn/Captura-desde-2024-12-15-21-01-36.png)
 
 - Configura los parámetros según las necesidades de tu negocio.
 
