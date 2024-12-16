@@ -80,7 +80,7 @@ Una vez instalado y configurado el módulo, puedes gestionar los proyectos de em
 - Ve a **Recursos Humanos** y selecciona **Empleados**.
 - Dentro de este menú, encontrarás la opción **Proyectos de Empleados**.
 
-  ![Menú Proyectos de Empleados](espacio/a/la/imagen/menu_proyectos_empleados.png)
+  ![Menú Proyectos de Empleados](https://i.postimg.cc/4yYPprrZ/Captura-desde-2024-12-15-22-24-58.png)
 
 ### 2. Gestión de proyectos desde **Proyectos de Empleados**
 
@@ -90,7 +90,7 @@ En el menú **Proyectos de Empleados**, selecciona **Proyectos**. Aquí podrás 
 - Rellena los campos necesarios, como el nombre del proyecto, las fechas y cualquier otro detalle relevante.
 - Una vez completado el formulario, guarda el proyecto. El sistema te redirigirá a la vista de proyectos existentes donde podrás ver todos los proyectos asignados.
 
-  ![Crear Nuevo Proyecto](espacio/a/la/imagen/crear_nuevo_proyecto.png)
+  ![Crear Nuevo Proyecto](https://i.postimg.cc/sgdmZHKd/Captura-desde-2024-12-15-22-25-16.png)
 
 ### 3. Ver proyectos desde el portal
 
@@ -99,7 +99,7 @@ También puedes ver los proyectos asociados a tu usuario a través del portal:
 - Haz clic en el ícono de tu usuario en la esquina superior derecha y selecciona **Mi Cuenta**.
 - En la sección correspondiente, podrás ver todos los proyectos que tienes asignados.
 
-  ![Mi Cuenta y Proyectos](espacio/a/la/imagen/mi_cuenta_y_proyectos.png)
+  ![Mi Cuenta y Proyectos](https://i.postimg.cc/nzPYV3MW/Captura-desde-2024-12-15-22-25-31.png)
 
 ---
 
