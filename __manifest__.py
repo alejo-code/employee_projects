@@ -18,6 +18,7 @@
     "data": [
         "security/res_groups.xml",
         "security/ir.model.access.csv",
+        "data/employee_project_data.xml",
         "views/employee_project_view.xml",
         "views/hr_employee_view.xml",
         "views/templates.xml",

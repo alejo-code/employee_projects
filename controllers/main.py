@@ -142,3 +142,47 @@ class Main(http.Controller):
                 "project": project,
             },
         )
+
+    @http.route(["/my/home"], type="http", auth="user", website=True)
+    def portal_my_home(self, **kwargs):
+        values = {}
+        employee = (
+            request.env["hr.employee"]
+            .sudo()
+            .search([("user_id", "=", request.env.user.id)], limit=1)
+        )
+        projects = (
+            request.env["employee.project"]
+            .sudo()
+            .search([("employee_id", "=", employee.id)])
+        )
+
+        values.update(
+            {
+                "projects": projects,
+            }
+        )
+        response = request.render("portal.portal_my_home", values)
+        return response
+
+    @http.route(["/"], type="http", auth="user", website=True)
+    def index(self, **kw):
+        values = {}
+        employee = (
+            request.env["hr.employee"]
+            .sudo()
+            .search([("user_id", "=", request.env.user.id)], limit=1)
+        )
+        projects = (
+            request.env["employee.project"]
+            .sudo()
+            .search([("employee_id", "=", employee.id)])
+        )
+
+        values.update(
+            {
+                "projects": projects,
+            }
+        )
+        response = request.render("employee_projects.website_my_home_extension", values)
+        return response

@@ -33,23 +33,26 @@
     <template id="portal_create_project"
         name="Portal Project Form">
         <t t-call="portal.portal_layout">
-            <div class="container">
-                <h1>Crear un nuevo Socio</h1>
-                <form id="create_project_form">
+            <div class="container mt-5">
+                <h1 class="mb-4">Crear un nuevo Projecto</h1>
+                <form id="create_project_form"
+                    class="bg-light p-4 rounded shadow-sm">
                     <div class="form-group">
                         <label for="name">Nombre</label>
                         <input type="text"
                             id="name"
                             name="name"
                             class="form-control"
+                            placeholder="Ingrese el nombre"
                             required="True" />
                     </div>
                     <div class="form-group">
-                        <label for="description">Description</label>
+                        <label for="description">Descripción</label>
                         <input type="text"
                             id="description"
                             name="description"
                             class="form-control"
+                            placeholder="Ingrese la descripción"
                             required="True" />
                     </div>
                     <div class="form-group">
@@ -68,8 +71,10 @@
                             class="form-control"
                             required="True" />
                     </div>
-                    <button type="submit"
-                        class="btn btn-primary">Crear Project</button>
+                    <div class="form-group mt-4">
+                        <button type="submit"
+                            class="btn btn-primary btn-lg btn-block">Crear Proyecto</button>
+                    </div>
                 </form>
             </div>
         </t>
@@ -110,34 +115,112 @@
     <template id="portal_employee_project_detail"
         name="Employee Project Detail">
         <t t-call="portal.portal_layout">
-            <div class="container">
-                <h1>Detalles del Proyecto</h1>
-                <div class="card">
+            <div class="container mt-5">
+                <h1 class="mb-4">Detalles del Proyecto</h1>
+                <div class="card shadow-lg">
                     <div class="card-body">
-                        <h5 class="card-title">
+                        <h5 class="card-title text-primary">
                             <t t-esc="project.name" />
                         </h5>
-                        <p class="card-text">
+                        <p class="card-text mb-3">
                             <t t-esc="project.description" />
                         </p>
-                        <p>
-                            <strong>Empleado:</strong>
-                            <t t-esc="project.employee_id.name" />
-                            <br />
-                            <strong>Fecha de Inicio:</strong>
-                            <t t-esc="project.start_date or 'N/A'" />
-                            <br />
-                            <strong>Fecha de Finalización:</strong>
-                            <t t-esc="project.end_date or 'N/A'" />
-                        </p>
+
+                        <div class="mb-3">
+                            <p>
+                                <strong>Empleado:</strong>
+                                <t t-esc="project.employee_id.name" />
+                            </p>
+                            <p>
+                                <strong>Fecha de Inicio:</strong>
+                                <t t-esc="project.start_date or 'N/A'" />
+                            </p>
+                            <p>
+                                <strong>Fecha de Finalización:</strong>
+                                <t t-esc="project.end_date or 'N/A'" />
+                            </p>
+                        </div>
+                        <a href="/my/home"
+                            class="btn btn-success mt-4">
+                            <i class="fas fa-arrow-left"></i> Regresar a Mis Proyectos
+                        </a>
                     </div>
                 </div>
-                <a href="/my/employee_projects"
-                    class="btn btn-secondary mt-3">Regresar a Mis Proyectos</a>
             </div>
         </t>
     </template>
 
 
+    <template id="portal_my_home_extension"
+        inherit_id="portal.portal_my_home">
+        <xpath expr="//div[@class='o_portal_docs list-group']"
+            position="inside">
+            <div class="container mt-5">
+                <h1 class="mb-4">My Projects</h1>
+                <t t-if="projects">
+                    <div class="row">
+                        <t t-foreach="projects"
+                            t-as="project">
+                            <div class="col-md-4 mb-4">
+                                <div class="card shadow-sm">
+                                    <div class="card-body">
+                                        <h5 class="card-title">
+                                            <a t-att-href="'/my/employee_projects/%s' % project.id"
+                                                class="text-decoration-none">
+                                                <t t-esc="project.name" />
+                                            </a>
+                                        </h5>
+                                        <a t-att-href="'/my/employee_projects/%s' % project.id"
+                                            class="btn btn-primary btn-sm">Ver Detalles</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </t>
+                    </div>
+                </t>
+                <t t-else="">
+                    <p>No projects assigned.</p>
+                </t>
+                <a href="/portal/create_project"
+                    class="btn btn-success mt-4">Create New Project</a>
+            </div>
+        </xpath>
+    </template>
 
+
+    <template id="website_my_home_extension"
+        inherit_id="website.homepage">
+        <xpath expr="//div[@id='wrap']"
+            position="inside">
+            <div class="container mt-5">
+                <h1 class="mb-4">My Projects</h1>
+                <t t-if="projects">
+                    <div class="row">
+                        <t t-foreach="projects"
+                            t-as="project">
+                            <div class="col-md-4 mb-4">
+                                <div class="card shadow-sm">
+                                    <div class="card-body">
+                                        <h5 class="card-title">
+                                            <a t-att-href="'/my/employee_projects/%s' % project.id"
+                                                class="text-decoration-none">
+                                                <t t-esc="project.name" />
+                                            </a>
+                                        </h5>
+                                        <a t-att-href="'/my/employee_projects/%s' % project.id"
+                                            class="btn btn-primary btn-sm">Ver Detalles</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </t>
+                    </div>
+                </t>
+                <t t-else="">
+                    <p>No projects assigned.</p>
+                </t>
+                <a href="/portal/create_project"
+                    class="btn btn-success mt-4">Create New Project</a>
+            </div>
+        </xpath>
+    </template>
 </odoo>

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Crear un trabajo (job) -->
+    <record id="employee_job_example"
+        model="hr.job">
+        <field name="name">Software Developer</field>
+        <field name="sequence">10</field>
+    </record>
+
+    <!-- Cargar datos para empleados -->
+    <record id="hr.employee_admin"
+        model="hr.employee">
+        <field name="job_id"
+            ref="employee_job_example" />
+
+    </record>
+
+    <!-- Cargar datos para proyectos -->
+    <record id="employee_project_alpha"
+        model="employee.project">
+        <field name="name">Project Alpha</field>
+        <field name="employee_id"
+            ref="hr.employee_admin" />
+        <field name="description">This is the first test project description.</field>
+        <field name="start_date">2024-01-01</field>
+        <field name="end_date">2024-06-30</field>
+    </record>
+
+    <record id="employee_project_beta"
+        model="employee.project">
+        <field name="name">Project Beta</field>
+        <field name="employee_id"
+            ref="hr.employee_admin" />
+        <field name="description">This is the second test project description with no end date.</field>
+        <field name="start_date">2024-02-01</field>
+        <field name="end_date">2024-03-01</field>
+    </record>
+
+    <record id="employee_project_gamma"
+        model="employee.project">
+        <field name="name">Project Gamma</field>
+        <field name="employee_id"
+            ref="hr.employee_admin" />
+        <field name="description">This is a project with invalid dates.</field>
+        <field name="start_date">2024-03-01</field>
+        <field name="end_date">2024-01-01</field>
+    </record>
+
+</odoo>
