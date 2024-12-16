@@ -15,17 +15,13 @@ Este módulo proporciona funcionalidades personalizadas para [descripcion breve 
 
 Para asegurarte de que la lista de módulos esté actualizada en tu instancia de Odoo, sigue estos pasos:
 
-- _Ve a Ajustes_ en el menú superior de Odoo.
+- En el panel izquierdo, selecciona _Ajustes_.
 
-  ![Ajustes en el menú](ruta/a/la/imagen/ajustes.png)
+  ![Selección de Ajustes](https://i.postimg.cc/ZYd8mFFW/Captura-desde-2024-12-15-19-52-18.png)
 
-- En el panel izquierdo, selecciona _Apps_.
+- Activa el _Modo Desarrollador_ En la seccion Herramientas de desarrollador _Activar el modo desarrollador_.
 
-  ![Selección de Apps](ruta/a/la/imagen/apps.png)
-
-- Activa el _Modo Desarrollador_ haciendo clic en el icono de usuario en la esquina superior derecha y seleccionando _Activar el modo desarrollador_.
-
-  ![Activar modo desarrollador](ruta/a/la/imagen/activar_modo_desarrollador.png)
+  ![Activar modo desarrollador](https://i.postimg.cc/2yhhxr8Q/Captura-desde-2024-12-15-19-52-48.png)
 
 - Una vez activado el modo desarrollador, verás la opción _Actualizar lista de módulos_ en la parte superior. Haz clic en _Actualizar lista de módulos_.
 
