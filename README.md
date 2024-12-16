@@ -7,7 +7,7 @@ Este módulo proporciona funcionalidades personalizadas para [descripcion breve 
 ## Requisitos previos
 
 1. _Odoo_: Asegúrate de tener una instalación de Odoo en la versión [16.0] y que esté funcionando correctamente.
-2. _Accesos de Administrador_: Necesitarás permisos de administrador en Odoo para realizar estos pasos.
+2. _Human Resources / User_: Necesitarás permisos de Human Resources / User Odoo para realizar estos pasos.
 
 ## Pasos de instalación
 
